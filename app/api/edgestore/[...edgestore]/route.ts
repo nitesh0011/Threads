@@ -15,7 +15,7 @@ const handler = createEdgeStoreNextHandler({
   router: edgeStoreRouter,
 });
 
-export const maxDurations = 300;
+
 export { handler as GET, handler as POST };
 
 export type EdgeStoreRouter = typeof edgeStoreRouter;
