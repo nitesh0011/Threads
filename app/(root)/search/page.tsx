@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const page = () => {
+const Page = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [resArr, setResArr] = useState<[]>([]);
 
@@ -61,4 +61,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

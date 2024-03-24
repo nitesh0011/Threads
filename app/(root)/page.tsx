@@ -53,7 +53,7 @@ export default async function Home() {
 
           {
             result ? result.map((post, index) => {
-              return <div className=" w-1/2" >
+              return <div key={index} className=" w-1/2" >
                 <ThreadCard
                 key={index}
                 content={post?.text}
