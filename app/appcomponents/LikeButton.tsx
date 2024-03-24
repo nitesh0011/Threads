@@ -1,7 +1,6 @@
 'use client'
 import { dislikepost, likepost } from '@/lib/actions/user.actions'
 import React, { useState } from 'react'
-import { FaRegHeart } from 'react-icons/fa6'
 import { AiFillLike,AiFillDislike } from "react-icons/ai";
 import { AiOutlineLike,AiOutlineDislike } from "react-icons/ai";
 interface params {

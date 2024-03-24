@@ -1,13 +1,12 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { FaRegHeart } from "react-icons/fa";
+
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { FaRegCommentDots } from "react-icons/fa";
-import { useState } from "react";
-import { likepost } from "@/lib/actions/user.actions";
+
 import LikeButton from "./LikeButton";
-import { Button } from "@/components/ui/button";
+
 
 
 interface Props {
