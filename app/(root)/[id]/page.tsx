@@ -30,7 +30,6 @@ const page = async ({ params }: { params: { id: string } }) => {
           key={result?._id}
           id={result?._id}
           postAuthorId={result?.author?.id}
-          
           content={result?.text}
           postAuthorUsername={result.author.username}
           postAuthorImg={result.author.image}
@@ -52,5 +51,4 @@ const page = async ({ params }: { params: { id: string } }) => {
     </main>
   );
 };
-
 export default page;
