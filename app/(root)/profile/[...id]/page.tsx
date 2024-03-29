@@ -2,11 +2,9 @@ import ProfileHeader from "@/app/appcomponents/ProfileHeader";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import React from "react";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ThreadCard from "@/app/appcomponents/ThreadCard";
 import FetchCard from "@/app/appcomponents/FetchCard";
-import { fetchPosts } from "@/lib/actions/thred.actions";
+
 
 const ProfileCommentpage = async ({ params }: { params: { id: string } }) => {
   const user = await currentUser();
