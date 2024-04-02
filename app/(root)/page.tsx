@@ -11,7 +11,7 @@ import { fetchUser } from "@/lib/actions/user.actions";
 export default async function Home() {
   const user = await currentUser();
   if (!user) return null;
-  const userInfo:any = await fetchUser(user.id);
+  const userInfo: any = await fetchUser(user.id);
 
   const result = await fetchPosts();
   console.log("resulttt", result);
@@ -34,10 +34,10 @@ export default async function Home() {
             </Link>
             <div className=" w-full">
               <PostComponent
-                image={userInfo.image}
-                username={userInfo.username}
-                userId={userInfo._id}
-                usergoogleid = {userInfo.id}
+                image={userInfo?.image}
+                username={userInfo?.username}
+                userId={userInfo?._id}
+                usergoogleid={userInfo?.id}
               />
             </div>
 
@@ -55,22 +55,22 @@ export default async function Home() {
             result ? result.map((post, index) => {
               return <div key={index} className=" w-1/2" >
                 <ThreadCard
-                key={index}
-                content={post?.text}
-                id={post?._id.toString()}
-                postLike={post?.likes}
-                postimage={post?.images}
-                postAuthorUsername={post?.author?.username}
-                postAuthorImg={post?.author?.image}
-                postAuthorId={post?.author?.id}
-                postAuthor_Id={post?.author?._id?.toString()}
-                userInfo_id={userInfo._id}
+                  key={index}
+                  content={post?.text}
+                  id={post?._id.toString()}
+                  postLike={post?.likes}
+                  postimage={post?.images}
+                  postAuthorUsername={post?.author?.username}
+                  postAuthorImg={post?.author?.image}
+                  postAuthorId={post?.author?.id}
+                  postAuthor_Id={post?.author?._id?.toString()}
+                  userInfo_id={userInfo?._id}
                 />
-                </div>
-            }):"no posts found"
+              </div>
+            }) : "no posts found"
           }
 
-          
+
         </section>
       </main>
     </>
