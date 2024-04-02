@@ -11,7 +11,7 @@ const page = async ({ params }: { params: { id: string } }) => {
   if (!user) return null;
   
   
-  const userInfo = await fetchUser(user.id);
+  const userInfo:any = await fetchUser(user.id);
 
   const result = await fetchPostsComments(params.id);
   console.log('result coments params',result)
@@ -36,13 +36,14 @@ const page = async ({ params }: { params: { id: string } }) => {
           postimage={result?.images}
           postAuthor_Id={result.author._id.toString()}
           postLike={result.likes} 
-          userInfo_id={userInfo.id}        />
+          userInfo_id={userInfo?.id}
+          />
         <CommentSection
           key={result?._id}
           threadid={result?._id}
-          userId={userInfo._id}
+          userId={userInfo?._id}
           parentId={result?.author?._id}
-          authorImage={userInfo.image}
+          authorImage={userInfo?.image}
           comments={text}
           
           

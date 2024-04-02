@@ -9,20 +9,31 @@ import ThreadComment from "../models/comments.model";
 
 
 
-export async function fetchUser(userId: string) {
-  try {
-    connect();
+export async function fetchUser(userId: string): Promise<typeof User | null> {
+  let user: typeof User | null = null;
 
-    return await User.findOne({ id: userId }).populate({
-      path: "threads",
-      model: Thread,
-      select: "text author images children likes",
-    });
+  try {
+    // Connect to the database
+    await connect();
+
+    // Find the user with the provided userId
+    user = await User.findOne({ id: userId })
+      .populate({
+        path: 'threads',
+        model: Thread,
+        select: 'text author images children likes',
+      })
+      .lean(); // Convert to plain JavaScript object for better performance
+
+    
   } catch (error: any) {
+    // Handle any errors that occurred during the database operation
+    console.error('Error fetching user:', error);
     throw new Error(`Failed to fetch user: ${error.message}`);
   }
-}
 
+  return user;
+}
 interface params {
   userId: string;
   username: string;
@@ -116,7 +127,7 @@ export async function likepost(formdata: FormData) {
 
     const user = await currentUser();
     if (!user) return null;
-    const userInfo = await fetchUser(user.id);
+    const userInfo:any = await fetchUser(user.id);
 
     const data = {
       id: formdata.get("id"),
@@ -124,7 +135,7 @@ export async function likepost(formdata: FormData) {
 
   
     const updateddata = await Thread.findByIdAndUpdate(data?.id,{
-      $addToSet: { likes:  userInfo._id }, // Push user ID to the likes array
+      $addToSet: { likes:  userInfo?._id }, // Push user ID to the likes array
     },
     { new: true } );
     console.log("updated-->", updateddata);
@@ -140,7 +151,7 @@ export async function dislikepost(formdata: FormData) {
     connect();
     const user = await currentUser();
     if (!user) return null;
-    const userInfo = await fetchUser(user.id);
+    const userInfo:any = await fetchUser(user.id);
 
 
     const data = {
@@ -151,7 +162,7 @@ export async function dislikepost(formdata: FormData) {
     //     likes: userInfo._id,
     // };
     const updateddata = await Thread.findByIdAndUpdate(data?.id, {
-      $pull: { likes: userInfo._id  },
+      $pull: { likes: userInfo?._id  },
     });
     console.log("updated-->", updateddata);
     revalidatePath("/")
