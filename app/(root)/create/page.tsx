@@ -7,11 +7,11 @@ async function Page() {
   const user = await currentUser();
   if (!user) return null;
 
-  const userInfo = await fetchUser(user.id);
+  const userInfo:any = await fetchUser(user.id);
 
   return (
     <>
-      <PostThread userId={userInfo._id.toString()} />
+      <PostThread userId={userInfo?._id.toString()} />
     </>
   );
 }

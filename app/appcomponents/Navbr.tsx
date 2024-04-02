@@ -13,7 +13,7 @@ const Navbar = async () => {
   const user = await currentUser();
   if (!user) return null;
 
-  const userInfo = await fetchUser(user.id);
+  const userInfo:any = await fetchUser(user.id);
   console.log("userinfo", userInfo);
   
   return (

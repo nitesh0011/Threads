@@ -9,7 +9,7 @@ import FetchCard from "@/app/appcomponents/FetchCard";
 const ProfileCommentpage = async ({ params }: { params: { id: string } }) => {
   const user = await currentUser();
   if (!user) return null;
-  const userInfo = await fetchUser(params.id);
+  const userInfo:any = await fetchUser(params.id);
   console.log("userInfo from params",userInfo)
  
 
